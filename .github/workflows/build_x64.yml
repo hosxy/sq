@@ -41,4 +41,4 @@ jobs:
         with:
           name: sequoia-sq_x64
           if-no-files-found: ignore
-          path: sequoia\target\release\sequoia-sq.zip
+          path: sequoia-sq.zip
