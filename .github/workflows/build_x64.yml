@@ -33,7 +33,13 @@ jobs:
           dir target\release
       
       - name: Archive
-          run:|
-            Compress-Archive sequoia\target\release\sq.exe,sequoia\target\release\sq.pdb sequoia-sq.zip
+        run: |
+          Compress-Archive sequoia\target\release\sq.exe,sequoia\target\release\sq.pdb sequoia-sq.zip
             
       
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: sequoia-sq_x64
+          if-no-files-found: ignore
+          path: sequoia-sq.zip
