@@ -1,0 +1,33 @@
+name: SQ-build
+
+on:
+  release:
+    types: [published]
+    
+jobs:
+  
+  build:    
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ilammy/msvc-dev-cmd@v1  
+      
+      - name: Configure Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          
+      - name: install capnproto
+        run: |
+          curl https://capnproto.org/capnproto-c++-win32-0.9.0.zip -o "capnp.zip"
+          Expand-Archive capnp.zip -DestinationPath C:\capnp
+ 
+      - name: build sq
+        run: |
+          $env:PATH = $env:PATH + ";C:\capnp\capnproto-tools-win32-0.9.0"
+          echo ${env:PATH}
+          git clone https://gitlab.com/sequoia-pgp/sequoia.git sequoia
+          cd sequoia
+          cargo build --release --manifest-path=sq/Cargo.toml --no-default-features --features crypto-cng,compression
+          dir target\release
