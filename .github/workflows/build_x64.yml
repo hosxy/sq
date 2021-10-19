@@ -30,7 +30,6 @@ jobs:
           git clone https://gitlab.com/sequoia-pgp/sequoia.git sequoia
           cd sequoia
           cargo build --release --manifest-path=sq/Cargo.toml --no-default-features --features crypto-cng,compression
-          dir target\release
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
