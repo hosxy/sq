@@ -29,7 +29,7 @@ jobs:
           echo ${env:PATH}
           git clone -b sq/v0.26.0 https://gitlab.com/sequoia-pgp/sequoia.git sequoia
           cd sequoia
-          cargo build --release --manifest-path=sq/Cargo.toml --no-default-features --features crypto-cng,compression
+          cargo build --release --manifest-path=sq/Cargo.toml --no-default-features --features crypto-cng
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
