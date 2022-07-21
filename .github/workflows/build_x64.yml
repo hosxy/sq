@@ -27,7 +27,7 @@ jobs:
         run: |
           $env:PATH = $env:PATH + ";C:\capnp\capnproto-tools-win32-0.9.0"
           echo ${env:PATH}
-          git clone -b sq/v0.26.0 https://gitlab.com/sequoia-pgp/sequoia.git sequoia
+          git clone -b sq/v0.27.0 https://gitlab.com/sequoia-pgp/sequoia.git sequoia
           cd sequoia
           cargo build --release --manifest-path=sq/Cargo.toml --no-default-features --features crypto-cng
 
