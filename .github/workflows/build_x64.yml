@@ -20,7 +20,7 @@ jobs:
           
       - name: build sq
         run: |
-          git clone -b v0.29.0 https://gitlab.com/sequoia-pgp/sequoia-sq sequoia
+          git clone -b v0.29.0 https://gitlab.com/sequoia-pgp/sequoia-sq.git sequoia
           cd sequoia
           cargo build --release --no-default-features --features crypto-cng,compression
 
