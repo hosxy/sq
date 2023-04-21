@@ -18,18 +18,11 @@ jobs:
           profile: minimal
           toolchain: stable
           
-      - name: install capnproto
-        run: |
-          curl https://capnproto.org/capnproto-c++-win32-0.9.0.zip -o "capnp.zip"
-          Expand-Archive capnp.zip -DestinationPath C:\capnp
- 
       - name: build sq
         run: |
-          $env:PATH = $env:PATH + ";C:\capnp\capnproto-tools-win32-0.9.0"
-          echo ${env:PATH}
-          git clone -b sq/v0.27.0 https://gitlab.com/sequoia-pgp/sequoia.git sequoia
+          git clone -b v0.29.0 https://gitlab.com/sequoia-pgp/sequoia-sq sequoia
           cd sequoia
-          cargo build --release --manifest-path=sq/Cargo.toml --no-default-features --features crypto-cng
+          cargo build --release --no-default-features --features crypto-cng,compression
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
