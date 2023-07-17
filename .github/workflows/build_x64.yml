@@ -9,7 +9,7 @@ jobs:
   build:    
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: ilammy/msvc-dev-cmd@v1  
       
       - name: Configure Rust
@@ -23,6 +23,11 @@ jobs:
           curl https://capnproto.org/capnproto-c++-win32-0.10.3.zip -o "capnp.zip"
           Expand-Archive capnp.zip -DestinationPath C:\capnp
     
+      - name: build openssl
+        run: |
+          echo "VCPKG_ROOT=$env:VCPKG_INSTALLATION_ROOT" | Out-File -FilePath $env:GITHUB_ENV -Append
+          vcpkg install openssl:x64-windows-static-md
+        
       - name: build sq
         run: |
           $env:PATH = $env:PATH + ";C:\capnp\capnproto-tools-win32-0.10.3"
