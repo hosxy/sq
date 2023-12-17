@@ -33,9 +33,9 @@ jobs:
         run: |
           $env:PATH = $env:PATH + ";C:\capnp\capnproto-tools-win32-0.10.3"
           echo ${env:PATH}
-          git clone -b v0.31.0 https://gitlab.com/sequoia-pgp/sequoia-sq.git sequoia
+          git clone -b v0.32.0 https://gitlab.com/sequoia-pgp/sequoia-sq.git sequoia
           cd sequoia
-          cargo build --release --no-default-features --features crypto-cng
+          cargo build --release --no-default-features --features crypto-cng,autocrypt 
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
